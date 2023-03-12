@@ -12,7 +12,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::paginate(5);
+        $members = Member::paginate(10);
 
         return view('members.index', compact('members'));
     }
@@ -33,7 +33,14 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required',
             'first_name' => 'required',
-            // @TODO add the rest
+            'street' => 'required',
+            'house_number' => 'required',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'birth_date' => 'required',
+            'join_date' => 'required',
         ]);
 
         Member::create($request->all());
@@ -65,7 +72,14 @@ class MemberController extends Controller
         $request->validate([
             'name' => 'required',
             'first_name' => 'required',
-            // @TODO add the rest
+            'street' => 'required',
+            'house_number' => 'required',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'birth_date' => 'required',
+            'join_date' => 'required',
         ]);
 
         $member->update($request->all());

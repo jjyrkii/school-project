@@ -10,6 +10,20 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'first_name',
+        'street',
+        'house_number',
+        'postal_code',
+        'city',
+        'phone',
+        'email',
+        'birth_date',
+        'join_date',
+    ];
+
+
     public function departments(): BelongsToMany
     {
         return $this->belongsToMany(

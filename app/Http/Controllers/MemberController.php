@@ -12,7 +12,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = Member::latest()->paginate(5);
+
+        return view('members.index', compact('members'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -20,7 +22,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('members.create');
     }
 
     /**
@@ -28,7 +30,15 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'first_name' => 'required',
+            // @TODO add the rest
+        ]);
+
+        Member::create($request->all());
+
+        return redirect()->route('members.index')->with('success', 'Member created successfully.');
     }
 
     /**
@@ -36,7 +46,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        return view('members.show', compact('member'));
     }
 
     /**
@@ -44,7 +54,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        return view('members.edit', compact('member'));
     }
 
     /**
@@ -52,7 +62,15 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'first_name' => 'required',
+            // @TODO add the rest
+        ]);
+
+        $member->update($request->all());
+
+        return redirect()->route('members.index')->with('success', 'Member updated successfully.');
     }
 
     /**
@@ -60,6 +78,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->delete();
+
+        return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
     }
 }

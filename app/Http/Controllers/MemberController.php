@@ -12,9 +12,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::latest()->paginate(5);
+        $members = Member::paginate(5);
 
-        return view('members.index', compact('members'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('members.index', compact('members'));
     }
 
     /**

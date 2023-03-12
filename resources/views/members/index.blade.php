@@ -19,14 +19,22 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Details</th>
+            <th>Anschrift</th>
+            <th>Telefonnummer</th>
+            <th>E-Mail</th>
+            <th>Geburtstag</th>
+            <th>Beitrittsdatum</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($members as $member)
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $member->name }}</td>
-                <td>{{ $member->detail }}</td>
+                <td>{{ $member->id }}</td>
+                <td>{{ sprintf('%s, %s', $member->name, $member->first_name) }}</td>
+                <td>{{ sprintf('%s %s, %s %s', $member->street, $member->house_number, $member->postal_code, $member->city) }}</td>
+                <td>{{ $member->phone }}</td>
+                <td>{{ $member->email }}</td>
+                <td>{{ $member->birth_date }}</td>
+                <td>{{ $member->join_date }}</td>
                 <td>
                     <form action="{{ route('members.destroy',$member->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('members.show',$member->id) }}">Show</a>

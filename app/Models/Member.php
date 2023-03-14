@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Member extends Model
 {
@@ -24,13 +23,46 @@ class Member extends Model
     ];
 
 
-    public function departments(): BelongsToMany
+    public function trainings(): array
     {
-        return $this->belongsToMany(
-            Department::class,
-            'members_departments',
-            'member_id',
-            'department_id'
-        );
+        $trainings = [];
+        foreach (Training::all()->where('member_id', $this->id) as $training) {
+            $trainings[] = [
+                'id' => $training->id,
+                'date' => $training->date,
+                'department' => Department::find($training->department_id)->name,
+            ];
+
+        }
+        return $trainings;
+    }
+
+    public function departments(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Department::class);
+    }
+
+    public function update(array $attributes = [], array $options = [])
+    {
+        if (! $this->exists) {
+            return false;
+        }
+
+        foreach (Department::all() as $department) {
+            if (key_exists("department_" . $department->name, $attributes)) {
+                if (!in_array($department, $this->departments->toArray())) {
+                    $this->departments()->attach($department);
+                }
+            } else {
+                $this->departments()->detach($department);
+            }
+        }
+
+        return $this->fill($attributes)->save($options);
+    }
+
+    public function hasDepartment(Department $department): bool
+    {
+        return $this->departments->contains($department);
     }
 }

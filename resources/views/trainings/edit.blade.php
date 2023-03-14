@@ -20,7 +20,6 @@
             </ul>
         </div>
     @endif
-    <h3><b>Persönliche Informationen</b></h3>
     <form action="{{ route('members.update', $member->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -92,46 +91,13 @@
                 <div class="form-group">
                     <strong for="join_date">Beitrittsdatum</strong>
                     <input type="date" class="form-control" id="join_date" placeholder="Beitrittsdatum"
-                           name="join_date" value="{{ $member->join_date }}">
+                           name="join_date" value="{{ $member->join_date }}" >
                 </div>
-                <br/>
             </div>
-            <h3><b>Abteilungen</b></h3>
-            @foreach(\App\Models\Department::all() as $department)
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-check">
-                        <strong for="join_date">{{$department->name}}</strong>
-                        <input
-                            {{$member->hasDepartment($department) ? 'checked' : ''}} type="checkbox"
-                            class="form-check-input" id="{{$department->id}}"
-                            name="department_{{$department->name}}" value="">
-                    </div>
-                </div>
-            @endforeach
-
         </div>
         <br/>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>
-    <br/>
-    <br/>
-    <h3><b>Trainings</b></h3>
-    <table class="table table-bordered">
-        <tr>
-            <th>Datum</th>
-            <th>Abteilung</th>
-        </tr>
-        @foreach($member->trainings() as $training)
-            <tr id="{{ $training['id'] }}">
-                <td>{{ $training['date'] }}</td>
-                <td>{{ $training['department'] }}</td>
-            </tr>
-        @endforeach
-    </table>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <a class="btn btn-primary" href="{{ route('members.edit', $member->id) }}">Training eintragen</a>
-    </div>
-    <br/>
 @endsection

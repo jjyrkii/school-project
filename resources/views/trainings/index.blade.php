@@ -17,16 +17,18 @@
     @endif
     <table class="table table-bordered">
         <tr>
+            <th>No</th>
             <th>Name</th>
             <th>Anschrift</th>
             <th>Telefonnummer</th>
             <th>E-Mail</th>
             <th>Geburtstag</th>
             <th>Beitrittsdatum</th>
-            <th>Action</th>
+            <th width="280px">Action</th>
         </tr>
         @foreach ($members as $member)
             <tr>
+                <td>{{ $member->id }}</td>
                 <td>{{ sprintf('%s, %s', $member->name, $member->first_name) }}</td>
                 <td>{{ sprintf('%s %s, %s %s', $member->street, $member->house_number, $member->postal_code, $member->city) }}</td>
                 <td>{{ $member->phone }}</td>

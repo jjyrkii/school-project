@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Member;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -20,15 +22,23 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        //
+        return view('trainings.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Member $member, Department $department)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'member_id' => 'required',
+            'department_id' => 'required',
+        ]);
+
+        Training::create($request->all());
+
+        return view('members.edit', compact('member'));
     }
 
     /**

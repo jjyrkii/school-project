@@ -18,3 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('members', \App\Http\Controllers\MemberController::class);
+
+Route::resource('trainings', \App\Http\Controllers\TrainingController::class);
+
+

@@ -1,9 +1,9 @@
-@extends('members.layout')
+@extends('trainings.layout')
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New Member</h2>
+                <h2>Add New Training</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('members.index') }}"> Back</a>
@@ -20,73 +20,39 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('members.store') }}" method="POST" role="form">
+    <form action="{{ route('trainings.store') }}" method="POST" role="form">
         @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong for="name">Name</strong>
-                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                    <strong for="date">Datum</strong>
+                    <input type="date" class="form-control" id="date" name="date">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong for="first_name">Vorname</strong>
-                    <input type="text" class="form-control" id="first_name" placeholder="Vorname" name="first_name">
+                    <strong for="member_id">Datum</strong>
+                    <select class="form-control" id="member_id" name="member_id">
+                        @foreach(\App\Models\Member::all() as $member)
+                            <option id="{{$member->id}}">{{$member->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong for="street">Straße</strong>
-                    <input type="text" class="form-control" id="street" placeholder="Straße" name="street">
+                    <strong for="department_id">Datum</strong>
+                    <select class="form-control" id="department_id" name="department_id">
+                        @foreach(\App\Models\Department::all() as $department)
+                            <option id="{{$department->id}}">{{$department->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="house_number">Hausnummer</strong>
-                    <input type="text" class="form-control" id="house_number" placeholder="Hausnummer" name="house_number">
-                </div>
+            <br/>
+            <br/>
+            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="postal_code">PLZ</strong>
-                    <input type="text" class="form-control" id="postal_code" placeholder="PLZ" name="postal_code">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="city">Ort</strong>
-                    <input type="text" class="form-control" id="city" placeholder="Ort" name="city">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="phone">Telefon</strong>
-                    <input type="tel" class="form-control" id="phone" placeholder="Telefon" name="phone">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="email">E-Mail</strong>
-                    <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="birth_date">Geburtstag</strong>
-                    <input type="date" class="form-control" id="birth_date" placeholder="Geburtstag" name="birth_date">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong for="join_date">Beitrittsdatum</strong>
-                    <input type="date" class="form-control" id="join_date" placeholder="Beitrittsdatum" name="join_date">
-                </div>
-            </div>
-        </div>
-        <br />
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
     </form>
 @endsection

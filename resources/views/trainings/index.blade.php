@@ -1,4 +1,4 @@
-@extends('members.layout')
+@extends('trainings.layout')
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -6,7 +6,7 @@
                 <h2>Member Management</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('members.create') }}"> Create New Member</a>
+                <a class="btn btn-success" href="{{ route('trainings.create', null) }}"> Create New training</a>
             </div>
         </div>
     </div>
@@ -17,28 +17,20 @@
     @endif
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Anschrift</th>
-            <th>Telefonnummer</th>
-            <th>E-Mail</th>
-            <th>Geburtstag</th>
-            <th>Beitrittsdatum</th>
-            <th width="280px">Action</th>
+            <th>Datum</th>
+            <th>Mitglied</th>
+            <th>Abteilung</th>
         </tr>
-        @foreach ($members as $member)
+        @foreach ($trainings as $training)
+            <div >{{$department = \App\Models\Department::find($training->department_id)}}</div>
             <tr>
-                <td>{{ $member->id }}</td>
-                <td>{{ sprintf('%s, %s', $member->name, $member->first_name) }}</td>
-                <td>{{ sprintf('%s %s, %s %s', $member->street, $member->house_number, $member->postal_code, $member->city) }}</td>
-                <td>{{ $member->phone }}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->birth_date }}</td>
-                <td>{{ $member->join_date }}</td>
+                <td>{{ $training->date }}</td>
+                <td>{{ sprintf('%s, %s', $training->name, $training->first_name) }}</td>
+                <td>{{ $department->name }}</td>
                 <td>
-                    <form action="{{ route('members.destroy',$member->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('members.show',$member->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('members.edit',$member->id) }}">Edit</a>
+                    <form action="{{ route('trainings.destroy', $training->id) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('trainings.show', $training->id) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('trainings.edit', $training->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -47,5 +39,5 @@
             </tr>
         @endforeach
     </table>
-    {!! $members->links() !!}
+    {!! $trainings->links() !!}
 @endsection

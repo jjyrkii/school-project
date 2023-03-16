@@ -14,21 +14,22 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        //
+        $trainings = Training::paginate(10);
+        return view('trainings.index', compact('trainings'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(?Member $member)
     {
-        return view('trainings.create');
+        return view('trainings.create', compact('member'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Member $member, Department $department)
+    public function store(Request $request)
     {
         $request->validate([
             'date' => 'required',
@@ -38,7 +39,7 @@ class TrainingController extends Controller
 
         Training::create($request->all());
 
-        return view('members.edit', compact('member'));
+        return redirect()->route('members.edit', Member::find($request->get('member_id')));
     }
 
     /**

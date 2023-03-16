@@ -6,7 +6,7 @@
                 <h2>Add New Training</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('members.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('trainings.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -33,8 +33,9 @@
                 <div class="form-group">
                     <strong for="member_id">Datum</strong>
                     <select class="form-control" id="member_id" name="member_id">
-                        @foreach(\App\Models\Member::all() as $member)
-                            <option id="{{$member->id}}">{{$member->name}}</option>
+                        @foreach(\App\Models\Member::all() as $loopMember)
+                            <option {{$member === $loopMember ? 'selected' : ''}} id="{{$loopMember->id}}"
+                                    value={{$loopMember->id}}>{{$loopMember->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,13 +45,12 @@
                     <strong for="department_id">Datum</strong>
                     <select class="form-control" id="department_id" name="department_id">
                         @foreach(\App\Models\Department::all() as $department)
-                            <option id="{{$department->id}}">{{$department->name}}</option>
+                            <option id="{{$department->id}}" value={{$department->id}}>{{$department->name}}</option>
                         @endforeach
                     </select>
                 </div>
+                <br/>
             </div>
-            <br/>
-            <br/>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

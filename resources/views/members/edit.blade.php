@@ -108,7 +108,6 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
         <br/>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -131,7 +130,7 @@
         @endforeach
     </table>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <a class="btn btn-primary" href="{{ route('members.edit', $member->id) }}">Training eintragen</a>
+        <a class="btn btn-primary" href="{{ route('trainings.create', $member) }}">Training eintragen</a>
     </div>
     <br/>
 @endsection

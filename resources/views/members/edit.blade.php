@@ -29,16 +29,25 @@
         @csrf
         @method('PUT')
         <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <strong>Mitgliedsnummer</strong>
+                    <input class="form-control" type="text" id="membership_id" name="membership_id"
+                           placeholder="Mitgliedsnummer" value="{{ $member->membership_id }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="name">Name</strong>
+                    <strong>Name</strong>
                     <input type="text" class="form-control" id="name" placeholder="Name" name="name"
                            value="{{ $member->name }}">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="first_name">Vorname</strong>
+                    <strong>Vorname</strong>
                     <input type="text" class="form-control" id="first_name" placeholder="Vorname"
                            name="first_name"
                            value="{{ $member->first_name }}">
@@ -48,14 +57,14 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="street">Straße</strong>
+                    <strong>Straße</strong>
                     <input type="text" class="form-control" id="street" placeholder="Straße" name="street"
                            value="{{ $member->street }}">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="house_number">Hausnummer</strong>
+                    <strong>Hausnummer</strong>
                     <input type="text" class="form-control" id="house_number" placeholder="Hausnummer"
                            name="house_number" value="{{ $member->house_number }}">
                 </div>
@@ -64,7 +73,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="postal_code">PLZ</strong>
+                    <strong>PLZ</strong>
                     <input type="text" class="form-control" id="postal_code" placeholder="PLZ"
                            name="postal_code"
                            value="{{ $member->postal_code }}">
@@ -72,7 +81,7 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="city">Ort</strong>
+                    <strong>Ort</strong>
                     <input type="text" class="form-control" id="city" placeholder="Ort" name="city"
                            value="{{ $member->city }}">
                 </div>
@@ -81,14 +90,14 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="phone">Telefon</strong>
+                    <strong>Telefon</strong>
                     <input type="tel" class="form-control" id="phone" placeholder="Telefon" name="phone"
                            value="{{ $member->phone }}">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="email">E-Mail</strong>
+                    <strong>E-Mail</strong>
                     <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email"
                            value="{{ $member->email }}">
                 </div>
@@ -97,7 +106,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="birth_date">Geburtstag</strong>
+                    <strong>Geburtstag</strong>
                     <input type="date" class="form-control" id="birth_date" placeholder="Geburtstag"
                            name="birth_date"
                            value="{{ $member->birth_date }}">
@@ -105,7 +114,7 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="join_date">Beitrittsdatum</strong>
+                    <strong>Beitrittsdatum</strong>
                     <input type="date" class="form-control" id="join_date" placeholder="Beitrittsdatum"
                            name="join_date" value="{{ $member->join_date }}">
                 </div>
@@ -118,7 +127,7 @@
                 @foreach(\App\Models\Department::all() as $department)
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-check">
-                            <strong for="join_date">{{$department->name}}</strong>
+                            <strong>{{$department->name}}</strong>
                             <input
                                 {{$member->hasDepartment($department) ? 'checked' : ''}} type="checkbox"
                                 class="form-check-input" id="{{$department->id}}"

@@ -32,6 +32,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'membership_id' => 'required',
             'name' => 'required',
             'first_name' => 'required',
             'street' => 'required',
@@ -71,6 +72,7 @@ class MemberController extends Controller
     public function update(Request $request, Member $member)
     {
         $request->validate([
+            'membership_id' => 'required',
             'name' => 'required',
             'first_name' => 'required',
             'street' => 'required',

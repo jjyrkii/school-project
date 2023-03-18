@@ -11,52 +11,58 @@
     <br/>
     <h3><b>Persönliche Informationen</b></h3>
     <div class="row">
+        <div class="col-6">
+            <strong>Mitgliedsnummer</strong>
+            <p>{{ $member->membership_id }}</p>
+        </div>
+    </div>
+    <div class="row">
         <div class="col">
-            <strong for="name">Name</strong>
+            <strong>Name</strong>
             <p>{{ $member->name }}</p>
         </div>
         <div class="col">
-            <strong for="first_name">Vorname</strong>
+            <strong>Vorname</strong>
             <p>{{ $member->first_name }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <strong for="street">Straße</strong>
+            <strong>Straße</strong>
             <p>{{ $member->street }}</p>
         </div>
         <div class="col">
-            <strong for="house_number">Hausnummer</strong>
+            <strong>Hausnummer</strong>
             <p>{{ $member->house_number }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <strong for="postal_code">PLZ</strong>
+            <strong>PLZ</strong>
             <p>{{ $member->postal_code }}</p>
         </div>
         <div class="col">
-            <strong for="city">Ort</strong>
+            <strong>Ort</strong>
             <p>{{ $member->city }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <strong for="phone">Telefon</strong>
+            <strong>Telefon</strong>
             <p>{{ $member->phone }}</p>
         </div>
         <div class="col">
-            <strong for="email">E-Mail</strong>
+            <strong>E-Mail</strong>
             <p>{{ $member->email }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <strong for="birth_date">Geburtstag</strong>
+            <strong>Geburtstag</strong>
             <p>{{ DateTime::createFromFormat('Y-m-d', $member->birth_date)->format('d. m. Y') }}</p>
         </div>
         <div class="col">
-            <strong for="join_date">Beitrittsdatum</strong>
+            <strong>Beitrittsdatum</strong>
             <p>{{ DateTime::createFromFormat('Y-m-d', $member->join_date)->format('d. m. Y') }}</p>
         </div>
     </div>

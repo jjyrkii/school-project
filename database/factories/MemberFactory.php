@@ -18,6 +18,7 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
+            'membership_id' => fake()->randomNumber(5),
             'name' => fake()->name(),
             'first_name' => fake()->firstName(),
             'street' => fake()->streetName(),

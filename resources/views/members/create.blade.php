@@ -18,33 +18,37 @@
     <form action="{{ route('members.store') }}" method="POST" role="form">
         @csrf
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <div class="form-group">
-                    <strong for="name">Name</strong>
-                    <input type="text" class="form-control" id="name" placeholder="Name" name="name"
-                    >
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <strong for="first_name">Vorname</strong>
-                    <input type="text" class="form-control" id="first_name" placeholder="Vorname"
-                           name="first_name"
-                    >
+                    <strong>Mitgliedsnummer</strong>
+                    <input class="form-control" type="text" id="membership_id" name="membership_id" placeholder="Mitgliedsnummer">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="street">Straße</strong>
-                    <input type="text" class="form-control" id="street" placeholder="Straße" name="street"
-                    >
+                    <strong>Name</strong>
+                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="house_number">Hausnummer</strong>
+                    <strong>Vorname</strong>
+                    <input type="text" class="form-control" id="first_name" placeholder="Vorname" name="first_name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <strong>Straße</strong>
+                    <input type="text" class="form-control" id="street" placeholder="Straße" name="street">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <strong>Hausnummer</strong>
                     <input type="text" class="form-control" id="house_number" placeholder="Hausnummer"
                            name="house_number">
                 </div>
@@ -53,48 +57,41 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="postal_code">PLZ</strong>
-                    <input type="text" class="form-control" id="postal_code" placeholder="PLZ"
-                           name="postal_code"
-                    >
+                    <strong>PLZ</strong>
+                    <input type="text" class="form-control" id="postal_code" placeholder="PLZ" name="postal_code">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="city">Ort</strong>
-                    <input type="text" class="form-control" id="city" placeholder="Ort" name="city"
-                    >
+                    <strong>Ort</strong>
+                    <input type="text" class="form-control" id="city" placeholder="Ort" name="city">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="phone">Telefon</strong>
-                    <input type="tel" class="form-control" id="phone" placeholder="Telefon" name="phone"
-                    >
+                    <strong>Telefon</strong>
+                    <input type="tel" class="form-control" id="phone" placeholder="Telefon" name="phone">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="email">E-Mail</strong>
-                    <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email"
-                    >
+                    <strong>E-Mail</strong>
+                    <input type="email" class="form-control" id="email" placeholder="E-Mail" name="email">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <strong for="birth_date">Geburtstag</strong>
-                    <input type="date" class="form-control" id="birth_date" placeholder="Geburtstag"
-                           name="birth_date"
-                    >
+                    <strong>Geburtstag</strong>
+                    <input type="date" class="form-control" id="birth_date" placeholder="Geburtstag" name="birth_date">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <strong for="join_date">Beitrittsdatum</strong>
+                    <strong>Beitrittsdatum</strong>
                     <input type="date" class="form-control" id="join_date" placeholder="Beitrittsdatum"
                            name="join_date">
                 </div>
@@ -105,7 +102,7 @@
         @foreach(\App\Models\Department::all() as $department)
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-check">
-                    <strong for="join_date">{{$department->name}}</strong>
+                    <strong>{{$department->name}}</strong>
                     <input
                         type="checkbox"
                         class="form-check-input" id="{{$department->id}}"

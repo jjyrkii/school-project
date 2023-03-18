@@ -82,7 +82,7 @@ class Member extends Model
         $lastYear = (new \DateTime())->sub(new \DateInterval('P1Y'));
         foreach ($trainings as $training) {
             $dateObj = \DateTime::createFromFormat('Y-m-d', $training->date);
-            if ($dateObj >= $lastYear) {
+            if ($dateObj >= $lastYear && $training->department_id == 3) {
                 $month = $dateObj->format('Y-m');
                 if (!isset($counts[$month])) {
                     $counts[$month] = 0;

@@ -30,14 +30,11 @@
                         Trainings
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ route('trainings.index') }}">Alle Mitglieder</a></li>
+                        <li><a class="dropdown-item" href="{{ route('trainings.index') }}">Alle Trainings</a></li>
                         @foreach(\App\Models\Department::all() as $department)
                             <li><a class="dropdown-item" href="{{ route('departments.trainings.index', $department) }}">{{ $department->name }}</a></li>
                         @endforeach
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('trainings.index') }}">Trainings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('departments.index') }}">Abteilungen</a>

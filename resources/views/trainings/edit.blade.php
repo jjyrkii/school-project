@@ -14,7 +14,12 @@
             </ul>
         </div>
     @endif
-    <form action="{{ route('trainings.store') }}" method="POST" role="form">
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+    <form action="{{ route('trainings.update', $training->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">

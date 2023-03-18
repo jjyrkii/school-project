@@ -63,7 +63,15 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'member_id' => 'required',
+            'department_id' => 'required',
+        ]);
+
+        $training->update($request->all());
+
+        return redirect()->back()->with('success', 'Training erfolgreich aktualisiert');
     }
 
     /**

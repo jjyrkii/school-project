@@ -16,29 +16,29 @@
     @endif
     <table class="table table-bordered">
         <tr>
+            <th>Mitgliedsnummer</th>
             <th>Name</th>
-            <th>Anschrift</th>
-            <th>Telefonnummer</th>
-            <th>E-Mail</th>
-            <th>Geburtstag</th>
-            <th>Beitrittsdatum</th>
-            <th>Action</th>
+            <th>Abteilungen</th>
+            <th>Absolvierte Trainings</th>
+            <th>Aktionen</th>
         </tr>
         @foreach ($members as $member)
             <tr>
-                <td>{{ sprintf('%s, %s', $member->name, $member->first_name) }}</td>
-                <td>{{ sprintf('%s %s, %s %s', $member->street, $member->house_number, $member->postal_code, $member->city) }}</td>
-                <td>{{ $member->phone }}</td>
-                <td>{{ $member->email }}</td>
-                <td>{{ $member->birth_date }}</td>
-                <td>{{ $member->join_date }}</td>
+                <td>{{ $member->membership_id }}</td>
+                <td>{{ $member->fullName() }}</td>
+                <td>
+                    @foreach($member->departments()->get() as $department)
+                        <span>{{ $department->name }}</span>
+                    @endforeach
+                </td>
+                <td>{{ count($member->trainings()) }}</td>
                 <td>
                     <form action="{{ route('members.destroy',$member->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('members.show',$member->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('members.edit',$member->id) }}">Edit</a>
+                        <a class="btn btn-info" href="{{ route('members.show',$member->id) }}">Anzeigen</a>
+                        <a class="btn btn-primary" href="{{ route('members.edit',$member->id) }}">Bearbeiten</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Löschen</button>
                     </form>
                 </td>
             </tr>

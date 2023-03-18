@@ -24,15 +24,15 @@
         @foreach ($trainings as $training)
             <tr>
                 <td>{{ $training->date }}</td>
-                <td>{{ \App\Models\Member::find($training->member_id)->name }}</td>
+                <td>{{ \App\Models\Member::find($training->member_id)->fullName() }}</td>
                 <td>{{ \App\Models\Department::find($training->department_id)->name }}</td>
                 <td>
                     <form action="{{ route('trainings.destroy', $training->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('trainings.show', $training->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('trainings.edit', $training->id) }}">Edit</a>
+                        <a class="btn btn-info" href="{{ route('trainings.show', $training->id) }}">Anzeigen</a>
+                        <a class="btn btn-primary" href="{{ route('trainings.edit', $training->id) }}">Bearbeiten</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Löschen</button>
                     </form>
                 </td>
             </tr>

@@ -80,6 +80,10 @@
             <h3><b>Gesamte Gebühren</b></h3>
             <strong>{{ $member->getTotalFee() }} €</strong>
         </div>
+        <div class="col">
+            <h3><b>Erwerbsvoraussetzungen erfüllt?</b></h3>
+            <strong>{{ $member->canGetLicence($member->trainings()) ? 'Ja' : 'Nein'}}</strong>
+        </div>
     </div>
     <br/>
     <div class="row">

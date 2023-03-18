@@ -92,4 +92,9 @@ class Member extends Model
         return $this->departments->contains($department);
     }
 
+    public function fullName(): string
+    {
+        return $this->first_name . ' ' . $this->name;
+    }
+
 }

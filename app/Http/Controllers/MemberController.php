@@ -13,10 +13,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $header = 'Alle Mitglieder';
         $members = Member::paginate(10);
 
-        return view('members.index', compact('members'), compact('header'));
+        return view('members.index', compact('members'));
     }
 
     /**
@@ -97,13 +96,5 @@ class MemberController extends Controller
         $member->delete();
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
-    }
-
-    public static function membersByDepartment(Department $department)
-    {
-        $header = 'Mitglieder ' . $department->name;
-        $members = $department->belongsToMany(Member::class);
-
-        return view('members.index', compact('members'), compact('header'));
     }
 }

@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Symfony\Component\VarDumper\Caster\DateCaster;
 
 class Member extends Model
 {
@@ -74,18 +72,32 @@ class Member extends Model
         return 0;
     }
 
-//    public function canGetLicence(): bool
-//    {
-//        $trainings = Training::where('member_id')
-//
-////        $startDate = $this->join_date;
-////        $endDate = \Date::today();
-////        $trainings = $this->trainings();
-////        $relevantTrainings = [];
-////        foreach (Training::where() as $training) {
-////            if ($training->date )
-////        }
-//    }
+    /**
+     * @param array<Training> $trainings
+     * @return bool
+     */
+    public function canGetLicence(array $trainings): bool
+    {
+        $counts = [];
+        $lastYear = (new \DateTime())->sub(new \DateInterval('P1Y'));
+        foreach ($trainings as $training) {
+            $dateObj = \DateTime::createFromFormat('Y-m-d', $training->date);
+            if ($dateObj >= $lastYear) {
+                $month = $dateObj->format('Y-m');
+                if (!isset($counts[$month])) {
+                    $counts[$month] = 0;
+                }
+                $counts[$month]++;
+            }
+        }
+
+        $totalDates = array_sum($counts);
+        $totalMonths = count($counts);
+        if ($totalMonths == 12 || $totalDates >= 18) {
+            return true;
+        }
+        return false;
+    }
 
     public function hasDepartment(Department $department): bool
     {

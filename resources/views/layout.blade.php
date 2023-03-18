@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
     <title>Mitgliederverwaltung</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,9 +20,20 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('members.index') }}">Alle Mitglieder</a></li>
-                        <li><a class="dropdown-item" href="{{ route('members.index') }}">Bogen</a></li>
-                        <li><a class="dropdown-item" href="{{ route('members.index') }}">Luftdruck</a></li>
-                        <li><a class="dropdown-item" href="{{ route('members.index') }}">Feuerwaffen</a></li>
+                        @foreach(\App\Models\Department::all() as $department)
+                            <li><a class="dropdown-item" href="{{ route('departments.members.index', $department) }}">{{ $department->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Trainings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ route('trainings.index') }}">Alle Mitglieder</a></li>
+                        @foreach(\App\Models\Department::all() as $department)
+                            <li><a class="dropdown-item" href="{{ route('departments.trainings.index', $department) }}">{{ $department->name }}</a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="nav-item">

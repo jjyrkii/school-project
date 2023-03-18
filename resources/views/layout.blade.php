@@ -23,6 +23,8 @@
                         @foreach(\App\Models\Department::all() as $department)
                             <li><a class="dropdown-item" href="{{ route('departments.members.index', $department) }}">{{ $department->name }}</a></li>
                         @endforeach
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('members.create') }}">Neues Mitglied</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -34,6 +36,8 @@
                         @foreach(\App\Models\Department::all() as $department)
                             <li><a class="dropdown-item" href="{{ route('departments.trainings.index', $department) }}">{{ $department->name }}</a></li>
                         @endforeach
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('trainings.create') }}">Neues Training</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

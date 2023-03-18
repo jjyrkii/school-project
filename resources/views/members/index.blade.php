@@ -1,15 +1,14 @@
-@extends('members.layout')
+@extends('layout')
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Member Management</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('members.create') }}"> Create New Member</a>
-            </div>
+        <div class="col-10">
+            <h2><strong>Alle Mitglieder</strong></h2>
+        </div>
+        <div class="col">
+            <a class="btn btn-success" href="{{ route('members.create') }}">Neues Mitglied</a>
         </div>
     </div>
+    <br/>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>

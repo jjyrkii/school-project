@@ -39,7 +39,7 @@ class TrainingController extends Controller
 
         Training::create($request->all());
 
-        return redirect()->route('members.edit', Member::find($request->get('member_id')));
+        return redirect()->route('trainings.index');
     }
 
     /**
@@ -47,7 +47,7 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        //
+        return view('trainings.show', compact('training'));
     }
 
     /**
@@ -55,7 +55,7 @@ class TrainingController extends Controller
      */
     public function edit(Training $training)
     {
-        //
+        return view('trainings.edit', compact('training'));
     }
 
     /**

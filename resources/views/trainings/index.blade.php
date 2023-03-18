@@ -1,15 +1,14 @@
-@extends('trainings.layout')
+@extends('layout')
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Member Management</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('trainings.create', null) }}"> Create New training</a>
-            </div>
+        <div class="col-10">
+            <h2><strong>Alle Trainings</strong></h2>
+        </div>
+        <div class="col">
+            <a class="btn btn-success" href="{{ route('trainings.create', null) }}">Training anlegen</a>
         </div>
     </div>
+    <br/>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -20,13 +19,13 @@
             <th>Datum</th>
             <th>Mitglied</th>
             <th>Abteilung</th>
+            <th>Aktionen</th>
         </tr>
         @foreach ($trainings as $training)
-            <div >{{$department = \App\Models\Department::find($training->department_id)}}</div>
             <tr>
                 <td>{{ $training->date }}</td>
-                <td>{{ sprintf('%s, %s', $training->name, $training->first_name) }}</td>
-                <td>{{ $department->name }}</td>
+                <td>{{ \App\Models\Member::find($training->member_id)->name }}</td>
+                <td>{{ \App\Models\Department::find($training->department_id)->name }}</td>
                 <td>
                     <form action="{{ route('trainings.destroy', $training->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('trainings.show', $training->id) }}">Show</a>

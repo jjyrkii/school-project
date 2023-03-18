@@ -12,7 +12,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::all();
+
+        return view('departments.index', compact('departments'));
     }
 
     /**
@@ -44,7 +46,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -52,7 +54,14 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'fee' => 'required',
+        ]);
+
+        $department->update($request->all());
+
+        return redirect()->back()->with('success', 'Abteilung erfolgreich aktualisiert.');
     }
 
     /**

@@ -10,13 +10,15 @@ class Department extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'fee',
+    ];
+
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(
-            Member::class,
-            'members_departments',
-            'department_id',
-            'member_id'
-        );
+        return $this->belongsToMany(Member::class);
     }
+
+
 }

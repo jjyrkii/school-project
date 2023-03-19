@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h2><strong>Neues Mitglied</strong></h2>
-    <a class="btn btn-primary" href="{{ route('members.index') }}"> Back</a>
+    <a class="btn btn-primary" href="{{ route('members.index') }}">Zurück</a>
     <br/>
     <br/>
     @if ($errors->any())

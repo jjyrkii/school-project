@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h2><strong>{{ $member->first_name . ' ' . $member->name }}</strong></h2>
-    <a class="btn btn-primary" href="{{ route('members.index') }}"> Back</a>
+    <a class="btn btn-primary" href="{{ route('members.index') }}">Zurück</a>
     <br/>
     @if($member->hasBirthday())
         <div class="alert alert-warning">

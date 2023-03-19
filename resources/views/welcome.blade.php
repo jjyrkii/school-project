@@ -1,7 +1,9 @@
 @extends('layout')
 @section('content')
-    <h1><strong>Willkommen in der Mitgliederverwaltung</strong></h1>
-    <h1><strong>von: "der glühende Colt"</strong></h1>
+    <div class="text-center">
+        <h1><strong>Willkommen in der Mitgliederverwaltung</strong></h1>
+        <h1><strong>von: "der glühende Colt"</strong></h1>
+    </div>
     <br/>
     <div class="row">
         <div class="col">

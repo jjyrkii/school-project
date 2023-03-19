@@ -15,7 +15,7 @@
                 <td>{{ $department->fee }}</td>
                 <td>{{ $department->members->count() }}</td>
                 <td>
-                    <a class="btn btn-primary"
+                    <a class="btn btn-dark"
                        href="{{ route('departments.edit', $department) }}">Bearbeiten</a>
                 </td>
             </tr>

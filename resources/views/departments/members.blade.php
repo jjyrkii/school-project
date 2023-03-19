@@ -34,11 +34,30 @@
                 <td>{{ count($member->trainings()) }}</td>
                 <td>
                     <form action="{{ route('members.destroy',$member->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('members.show',$member->id) }}">Anzeigen</a>
-                        <a class="btn btn-primary" href="{{ route('members.edit',$member->id) }}">Bearbeiten</a>
+                        <a class="btn btn-dark" href="{{ route('members.show',$member->id) }}">Anzeigen</a>
+                        <a class="btn btn-dark" href="{{ route('members.edit',$member->id) }}">Bearbeiten</a>
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Löschen</button>
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Löschen</button>
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Löschen bestätigen</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span>Sind Sie sicher?</span>
+                                        <br/>
+                                        <span>Das Mitglied wird unwiderruflich gelöscht!</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                                        <button type="submit" class="btn btn-danger">Löschen</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </td>
             </tr>

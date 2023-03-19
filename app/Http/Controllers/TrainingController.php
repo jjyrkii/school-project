@@ -79,6 +79,8 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training)
     {
-        //
+        $training->delete();
+
+        return redirect()->back()->with('success', 'Training erfolgreich gelöscht.');
     }
 }
